@@ -17,6 +17,7 @@ if (navigator.geolocation) {
       let longitude = position.coords.longitude;
       let latitude = position.coords.latitude;
       appelAPI(longitude, latitude);
+      console.log(longitude, latitude);
     },
     () => {
       alert(
@@ -34,7 +35,7 @@ function appelAPI(long, lat) {
       return reponse.json();
     })
     .then((data) => {
-      //   console.log(data);
+      console.log(data);
       resultatAPI = data;
       temps.innerText = resultatAPI.current.weather[0].description;
       temperature.innerText = `${Math.trunc(resultatAPI.current.temp)}°`;
@@ -65,7 +66,7 @@ function appelAPI(long, lat) {
         )}°`;
       }
 
-      if (heureActuelle > 6 && heureActuelle < 21) {
+      if (heureActuelle > 6 && heureActuelle < 22) {
         img.src = `./ressources/jour/${resultatAPI.current.weather[0].icon}.svg`;
       } else {
         img.src = `./ressources/nuit/${resultatAPI.current.weather[0].icon}.svg`;
